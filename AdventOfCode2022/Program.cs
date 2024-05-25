@@ -9,4 +9,5 @@ Day2 day2 = new Day2("input_day2.txt");
 //day2.ParseInputPart2();
 
 Day3 day3 = new Day3("input_day3.txt");
-day3.ParseInputPart1();
+//day3.ParseInputPart1();
+day3.ParseInputPart2();

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
@@ -32,6 +33,41 @@ namespace AdventOfCode2022
                     if (secondCompartment.Contains(c))
                     {
                         duplicate = c;
+                        sum += GetValueForChar(c);
+                        break;
+                    }
+                }
+            }
+
+            Console.WriteLine($"The sum of priorities is {sum}");
+        }
+
+        public void ParseInputPart2()
+        {
+            Queue<string> inputLines = FileReader.ReadFile(InputFileName);
+
+            int sum = 0;
+
+            while (inputLines.Count != 0)
+            {
+                string line1 = inputLines.Dequeue();
+                string line2 = inputLines.Dequeue();
+                string line3 = inputLines.Dequeue();
+
+                List<char> sharedItems = new List<char>();
+
+                foreach (char c in line2)
+                {
+                    if (line1.Contains(c))
+                    {
+                        sharedItems.Add(c);
+                    }
+                }
+
+                foreach (char c in sharedItems)
+                {
+                    if (line3.Contains(c))
+                    {
                         sum += GetValueForChar(c);
                         break;
                     }
