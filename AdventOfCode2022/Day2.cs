@@ -67,5 +67,65 @@ namespace AdventOfCode2022
 
             Console.WriteLine($"Total score is: {totalScore}");
         }
+
+        public void ParseInputPart2()
+        {
+            // X = Lose, Y = Draw, Z = Win
+
+            Queue<string> inputLines = FileReader.ReadFile(InputFileName);
+
+            int totalScore = 0;
+
+            Dictionary<char, int> pointsPerChoice = new Dictionary<char, int>()
+            {
+                {'X', 1},
+                {'Y', 2},
+                {'Z', 3}
+            };
+
+            foreach (string line in inputLines)
+            {
+                int roundScore = 0;
+
+                char opponent = char.Parse(line.Split(' ')[0]);
+                char winLoseOrDraw = char.Parse(line.Split(' ')[1]);
+                char myChoice = ' ';
+
+                // check which choice you should make
+                switch (winLoseOrDraw)
+                {
+                    case 'X': // Lose
+                        if (opponent == 'A') myChoice = 'Z';
+                        else if (opponent == 'B') myChoice = 'X';
+                        else myChoice = 'Y';
+                        break;
+
+                    case 'Y': // Draw
+                        if (opponent == 'A') myChoice = 'X';
+                        else if (opponent == 'B') myChoice = 'Y';
+                        else myChoice = 'Z';
+
+                        roundScore += 3;
+
+                        break;
+
+                    case 'Z': // Win
+                        if (opponent == 'A') myChoice = 'Y';
+                        else if (opponent == 'B') myChoice = 'Z';
+                        else myChoice = 'X';
+
+                        roundScore += 6;
+
+                        break;
+                }
+
+                roundScore += pointsPerChoice[myChoice];
+
+                // add roundscore to totalscore
+                totalScore += roundScore;
+            }
+
+            Console.WriteLine($"Total score is: {totalScore}");
+        }
     }
 }
