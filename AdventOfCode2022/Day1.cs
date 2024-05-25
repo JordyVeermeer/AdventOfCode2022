@@ -1,25 +1,17 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
+﻿
 namespace AdventOfCode2022
 {
-    public class Day1
+    public class Day1 : AOCDay
     {
-        private string inputFileName = string.Empty;
-
-        public Day1(string inputFileName)
+        public Day1(string inputFileName) : base(inputFileName)
         {
-            this.inputFileName = Path.Combine("../../../", inputFileName);
         }
 
         public void ParseInputPart1()
         {
             int max = 0;
             int sum = 0;
-            Queue<string> inputLines = FileReader.ReadFile(inputFileName);
+            Queue<string> inputLines = FileReader.ReadFile(InputFileName);
 
             while(inputLines.Count() != 0)
             {
@@ -49,7 +41,7 @@ namespace AdventOfCode2022
         public void ParseInputPart2() {
             List<int> topThree = [];
             int sum = 0;
-            Queue<string> inputLines = FileReader.ReadFile(inputFileName);
+            Queue<string> inputLines = FileReader.ReadFile(InputFileName);
 
             while (inputLines.Count() != 0)
             {

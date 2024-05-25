@@ -24,7 +24,6 @@ namespace AdventOfCode2022
                         line = sr.ReadLine();
                     }
 
-                    queue.Enqueue("");
                 }
             }
             catch(Exception e) 
